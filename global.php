@@ -162,6 +162,16 @@ if(isset($mybb->user['style']) && (int)$mybb->user['style'] != 0)
 	$load_from_user = 1;
 }
 
+// Provide formatted avatar in user object.		
+if($mybb->user['uid'] != 0)
+{
+        if(empty($mybb->user['avatar'])) {
+            $mybb->user['formatted_avatar'] = $mybb->asset_url."/".$mybb->settings['useravatar'];
+        } else {
+            $mybb->user['formatted_avatar'] = format_avatar($mybb->user['avatar'])['image'];
+       }
+}
+
 $valid = array(
 	'showthread.php',
 	'forumdisplay.php',
